@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Nao</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/480f16bcdb.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <h1>¡Hola Nao! </h1>
+    <div id="contenedor">
+        <div id="izquierda">
+            <div class="divExcel">
+                <h3>
+                    Subi el archivo excel
+                </h3>
+                <input type="file" id="fileInput" accept=".xlsx">
+            </div>
+            <br>
+
+            <div class="div_opciones">
+                <h3>Elegí las opciones</h3>
+                <div class="div_tipoAnteojo">
+                    <label for="tipoAnteojo">¿Qué tipo de anteojos es?</label>
+                    <select id="tipoAnteojo">
+                        <option value="receta">de receta</option>
+                        <option value="sol">de sol</option>
+                    </select>
+                </div>
+                <br><br>
+                <div class="div_acciones">
+                    <label for="accion">¿Qué desea generar?</label>
+                    <select id="accion">
+                        <option value="sku">SKU</option>
+                        <option value="nombres">Nombres</option>
+                        <option value="descripcion">Descripción</option>
+                    </select>
+                </div>
+            </div>
+             
+    <div class="div_textarea">
+        <textarea id="resultTextarea" rows="10" cols="40"></textarea>
+        <br><br>
+        <div class="div_botones">
+            <button id="generar"><i class="fa-solid fa-play"></i></button>
+            <button onclick="copiarAlPortapapeles()"> <i class="fa-solid fa-copy"></i></button>
+            <button id="generarExcel">Generar Excel</button>
+        </div>
+    </div>
+
+        </div>
+        <div id="derecha">
+            <h3>¿Necesitás la plantilla de modelo?</h3>
+            <button id="btn_plantilla"> Descargar Plantilla</button>
+
+        </div>
+    </div>
+
+    <br><br>
+   
+
+
+
+    <!-- <div id="columnCheckboxes"></div>
+    <div id="output2"></div> -->
+
+    <div id="mensajeCopiado">Texto copiado al portapapeles</div>
+    <div id="errorArchivo">Selecciona un archivo primero</div>
+    <div id="mensajeExcelExito">El archivo excel ha sido creado correctamente</div>
+
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
