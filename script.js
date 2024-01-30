@@ -158,13 +158,6 @@ function mostrarDatos() {
     }
 
 
-
-
-
-
-
-
-
     //MÉTODOS COMUNES
 
     function error() {
@@ -393,7 +386,7 @@ function mostrarDatos() {
             var cellAddressO = XLSX.utils.encode_cell({ r: i, c: 14 });
             var cellAddressP = XLSX.utils.encode_cell({ r: i, c: 15 });
 
-            var cellValueB = selectedSheet[cellAddressB] ? selectedSheet[cellAddressB].v.charAt(0).toUpperCase() + selectedSheet[cellAddressB].v.slice(1).toLowerCase() : '';
+            var cellValueB = selectedSheet[cellAddressB] ? selectedSheet[cellAddressB].v.charAt(0).toUpperCase() + selectedSheet[cellAddressB].v.slice(1).toLowerCase() : '';          
             var cellValueC = selectedSheet[cellAddressC] ? selectedSheet[cellAddressC].v.charAt(0).toUpperCase() + selectedSheet[cellAddressC].v.slice(1).toLowerCase() : '';
             var cellValueG = selectedSheet[cellAddressG] ? selectedSheet[cellAddressG].v : '';
             var cellValueH = selectedSheet[cellAddressH] ? selectedSheet[cellAddressH].v.charAt(0).toUpperCase() + selectedSheet[cellAddressH].v.slice(1).toLowerCase() : '';
@@ -441,5 +434,269 @@ function mostrarDatos() {
 
     //MÉTODOS PARA SOL
 
-    function generarColumnasSol(range, nuevaHoja) {
+function generarColumnasSol(range, nuevaHoja) {
+    var columnaSKU;
+
+    //COLUMNAS DE CONTENIDO VARIABLE
+
+    //COLUMNA B: SKU
+    columnaSKU = [];
+    columnaSKU = agregarUnaColumna(range, 0);
+    columnaSKU.forEach((value, index) => {
+        XLSX.utils.sheet_add_aoa(nuevaHoja, [[value]], { origin: { r: index + 1, c: 1 }, raw: false });
+    });
+
+    //COLUMNA C: Nombre
+    nuevaColumna = [];
+    nuevaColumna = generarNombresSol(range);
+    nuevaColumna.forEach((value, index) => {
+        XLSX.utils.sheet_add_aoa(nuevaHoja, [[value]], { origin: { r: index + 1, c: 2 }, raw: false });
+    });
+
+    //COLUMNA F: Descripción
+    nuevaColumna = [];
+    nuevaColumna = generarDescripcionSol(range);
+    nuevaColumna.forEach((value, index) => {
+        XLSX.utils.sheet_add_aoa(nuevaHoja, [[value]], { origin: { r: index + 1, c: 5 }, raw: false });
+    });
+
+    //COLUMNA O: Imágenes
+    nuevaColumna = [];
+    nuevaColumna = agregarUnaColumna(range, 22);
+    nuevaColumna.forEach((value, index) => {
+        XLSX.utils.sheet_add_aoa(nuevaHoja, [[value]], { origin: { r: index + 1, c: 14 }, raw: false });
+    });
+
+    //COLUMNA R: Apto Graduable
+    nuevaColumna = [];
+    nuevaColumna = agregarUnaColumna(range, 16);
+    nuevaColumna.forEach((value, index) => {
+        (value) ? value = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase() : '';
+        XLSX.utils.sheet_add_aoa(nuevaHoja, [[value]], { origin: { r: index + 1, c: 17 }, raw: false });
+    });
+
+    //COLUMNA V: Calibre
+    nuevaColumna = [];
+    nuevaColumna = agregarUnaColumna(range, 17);
+    nuevaColumna.forEach((value, index) => {
+        XLSX.utils.sheet_add_aoa(nuevaHoja, [[value]], { origin: { r: index + 1, c: 21 }, raw: false });
+    });
+
+    //COLUMNA Z: Categoría
+    nuevaColumna = [];
+    nuevaColumna = agregarUnaColumna(range, 5);
+    nuevaColumna.forEach((value, index) => {
+        (value) ? value = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase() : '';
+        XLSX.utils.sheet_add_aoa(nuevaHoja, [[value]], { origin: { r: index + 1, c: 25 }, raw: false });
+    });
+
+    //COLUMNA AD: Color Armazón
+    nuevaColumna = [];
+    nuevaColumna = agregarUnaColumna(range, 3);
+    nuevaColumna.forEach((value, index) => {
+        (value) ? value = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase() : '';
+        XLSX.utils.sheet_add_aoa(nuevaHoja, [[value]], { origin: { r: index + 1, c: 29 }, raw: false });
+    });
+
+    //COLUMNA AH: Color lente
+    nuevaColumna = [];
+    nuevaColumna = agregarUnaColumna(range, 13);
+    nuevaColumna.forEach((value, index) => {
+        (value) ? value = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase() : '';
+        XLSX.utils.sheet_add_aoa(nuevaHoja, [[value]], { origin: { r: index + 1, c: 33 }, raw: false });
+    });
+
+    //COLUMNA AL: Espejado
+    nuevaColumna = [];
+    nuevaColumna = agregarUnaColumna(range, 15);
+    nuevaColumna.forEach((value, index) => {
+        (value) ? value = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase() : '';
+        XLSX.utils.sheet_add_aoa(nuevaHoja, [[value]], { origin: { r: index + 1, c: 37 }, raw: false });
+    });
+
+    //COLUMNA AP: Forma
+    nuevaColumna = [];
+    nuevaColumna = agregarUnaColumna(range, 4);
+    nuevaColumna.forEach((value, index) => {
+        (value) ? value = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase() : '';
+        XLSX.utils.sheet_add_aoa(nuevaHoja, [[value]], { origin: { r: index + 1, c: 41 }, raw: false });
+    });
+
+    //COLUMNA AT: Marca
+    nuevaColumna = [];
+    nuevaColumna = agregarUnaColumna(range, 1);
+    nuevaColumna.forEach((value, index) => {
+        (value) ? value = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase() : '';
+        XLSX.utils.sheet_add_aoa(nuevaHoja, [[value]], { origin: { r: index + 1, c: 45 }, raw: false });
+    });
+
+    //COLUMNA AX: Polarizado
+    nuevaColumna = [];
+    nuevaColumna = agregarUnaColumna(range, 14);
+    nuevaColumna.forEach((value, index) => {
+        (value) ? value = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase() : '';
+        XLSX.utils.sheet_add_aoa(nuevaHoja, [[value]], { origin: { r: index + 1, c: 49 }, raw: false });
+    });
+
+    //COLUMNAS DE CONTENIDO FIJO
+
+    //ColumnaSKU tiene el total de registros/filas de la nueva hoja 
+    for (var i = 1; i <= columnaSKU.length; i++) {
+
+
+        //cargo todas las columnas juntas que llevan el mismo valor
+        var cellRefs = ['D', 'H', 'L', 'S', 'T', 'W', 'X', 'AA', 'AB', 'AE', 'AF', 'AI', 'AJ', 'AM', 'AN', 'AQ', 'AR', 'AU', 'AV', 'AY', 'AZ'];
+        cellRefs.forEach(function (cellRef) {
+            nuevaHoja[cellRef + (i + 1)] = { t: 'n', v: '1' };
+        });
+
+        //cargo todas las columnas juntas que llevan el mismo valor
+        var cellRefs = ['I', 'J', 'K', 'P'];
+        cellRefs.forEach(function (cellRef) {
+            nuevaHoja[cellRef + (i + 1)] = { t: 'n', v: '0' };
+        });
+
+        var columna;
+        
+        columna = 'A' + (i + 1);
+        nuevaHoja[columna] = { t: 's', v: 'simple' };
+
+        columna = 'E' + (i + 1);
+        nuevaHoja[columna] = { t: 's', v: 'visible' };
+
+        columna = 'G' + (i + 1);
+        nuevaHoja[columna] = { t: 's', v: 'taxable' };
+
+        columna = 'N' + (i + 1);
+        nuevaHoja[columna] = { t: 's', v: 'Lentes de sol' };
+
+        columna = 'Q' + (i + 1);
+        nuevaHoja[columna] = { t: 's', v: 'Apto Graduable' };
+
+        columna = 'U' + (i + 1);
+        nuevaHoja[columna] = { t: 's', v: 'Calibre' };
+
+        columna = 'Y' + (i + 1);
+        nuevaHoja[columna] = { t: 's', v: 'Categoría' };
+
+        columna = 'AC' + (i + 1);
+        nuevaHoja[columna] = { t: 's', v: 'Color Armazón' };
+
+        columna = 'AG' + (i + 1);
+        nuevaHoja[columna] = { t: 's', v: 'Color Lente' };
+
+        columna = 'AK' + (i + 1);
+        nuevaHoja[columna] = { t: 's', v: 'Espejado' };
+
+        columna = 'AO' + (i + 1);
+        nuevaHoja[columna] = { t: 's', v: 'Forma' };
+
+        columna = 'AS' + (i + 1);
+        nuevaHoja[columna] = { t: 's', v: 'Marca' };
+
+        columna = 'AW' + (i + 1);
+        nuevaHoja[columna] = { t: 's', v: 'Polarizado' };
     }
+}
+
+function generarNombresSol(range) {
+    var resultado = [];
+    for (var i = range.s.r + 1; i <= range.e.r; i++) {
+        var cellAddressB = XLSX.utils.encode_cell({ r: i, c: 1 });
+        var cellAddressG = XLSX.utils.encode_cell({ r: i, c: 6 });
+        var cellAddressH = XLSX.utils.encode_cell({ r: i, c: 7 });        
+        var cellAddressI = XLSX.utils.encode_cell({ r: i, c: 8 });
+        var cellAddressU = XLSX.utils.encode_cell({ r: i, c: 20 });
+
+        var cellValueB = selectedSheet[cellAddressB] ? selectedSheet[cellAddressB].v.charAt(0).toUpperCase() + selectedSheet[cellAddressB].v.slice(1).toLowerCase() : '';
+        var cellValueG = selectedSheet[cellAddressG] ? selectedSheet[cellAddressG].v : '';
+        var cellValueH = selectedSheet[cellAddressH] ? selectedSheet[cellAddressH].v.charAt(0).toUpperCase() + selectedSheet[cellAddressH].v.slice(1).toLowerCase() : '';
+        var cellValueI = selectedSheet[cellAddressI] ? selectedSheet[cellAddressI].v : '';
+        var cellValueU = ''; //La coleccion podría ser un numero y por ende no es aplicable el toUpperCase/toLowerCase
+            if (selectedSheet[cellAddressU] && typeof selectedSheet[cellAddressU].v === 'string') {
+                cellValueU = selectedSheet[cellAddressU].v.charAt(0).toUpperCase() + selectedSheet[cellAddressU].v.slice(1).toLowerCase();
+            }
+
+        // Verificar cada valor antes de incluirlo en nombreCompleto, si es vacío lo omite
+        var nombreCompleto = '';
+        if (cellValueB) nombreCompleto += `${cellValueB.trim()} `; // trim() para eliminar espacios al final
+        if (cellValueH) nombreCompleto += `${cellValueH.trim()} `;
+        if (cellValueG) nombreCompleto += `${cellValueG.trim()} `;
+        if (cellValueI) nombreCompleto += `color ${cellValueI.trim()} `;
+        if (cellValueU) nombreCompleto += `- ${cellValueU.trim()}`;
+
+        resultado.push(nombreCompleto.trim());
+    }
+    return resultado;
+}
+
+function generarDescripcionSol(range) {
+    var resultadoDescripcionSol = [];
+    for (var i = range.s.r + 1; i <= range.e.r; i++) {
+        var cellAddressB = XLSX.utils.encode_cell({ r: i, c: 1 });
+        var cellAddressC = XLSX.utils.encode_cell({ r: i, c: 2 });
+        var cellAddressG = XLSX.utils.encode_cell({ r: i, c: 6 });
+        var cellAddressH = XLSX.utils.encode_cell({ r: i, c: 7 });
+        var cellAddressI = XLSX.utils.encode_cell({ r: i, c: 8 });
+        var cellAddressJ = XLSX.utils.encode_cell({ r: i, c: 9 });
+        var cellAddressK = XLSX.utils.encode_cell({ r: i, c: 10 });
+        var cellAddressL = XLSX.utils.encode_cell({ r: i, c: 11 });
+        var cellAddressM = XLSX.utils.encode_cell({ r: i, c: 12 });
+        var cellAddressR = XLSX.utils.encode_cell({ r: i, c: 17 });
+        var cellAddressS = XLSX.utils.encode_cell({ r: i, c: 18 });
+        var cellAddressT = XLSX.utils.encode_cell({ r: i, c: 19 });
+        var cellAddressU = XLSX.utils.encode_cell({ r: i, c: 20 });
+        var cellAddressV = XLSX.utils.encode_cell({ r: i, c: 21 });
+
+        //si hay valor: transforma las palabras en la primer letra en mayus y las otras en min, sino un ''
+        var cellValueB = selectedSheet[cellAddressB] ? selectedSheet[cellAddressB].v.charAt(0).toUpperCase() + selectedSheet[cellAddressB].v.slice(1).toLowerCase() : '';
+        var cellValueC = selectedSheet[cellAddressC] ? selectedSheet[cellAddressC].v.charAt(0).toUpperCase() + selectedSheet[cellAddressB].v.slice(1).toLowerCase() : '';
+        var cellValueG = selectedSheet[cellAddressG] ? selectedSheet[cellAddressG].v : '';
+        var cellValueH = selectedSheet[cellAddressH] ? selectedSheet[cellAddressH].v.charAt(0).toUpperCase() + selectedSheet[cellAddressH].v.slice(1).toLowerCase() : '';
+        var cellValueI = selectedSheet[cellAddressI] ? selectedSheet[cellAddressI].v : '';
+        var cellValueJ = selectedSheet[cellAddressJ] ? selectedSheet[cellAddressJ].v.charAt(0).toUpperCase() + selectedSheet[cellAddressJ].v.slice(1).toLowerCase() : '';
+        var cellValueK = selectedSheet[cellAddressK] ? selectedSheet[cellAddressK].v : '';
+        var cellValueL = selectedSheet[cellAddressL] ? selectedSheet[cellAddressL].v.charAt(0).toUpperCase() + selectedSheet[cellAddressL].v.slice(1).toLowerCase() : '';
+        var cellValueM = selectedSheet[cellAddressM] ? selectedSheet[cellAddressM].v.charAt(0).toUpperCase() + selectedSheet[cellAddressM].v.slice(1).toLowerCase() : '';
+        var cellValueR = selectedSheet[cellAddressR] ? selectedSheet[cellAddressR].v : '';
+        var cellValueS = selectedSheet[cellAddressS] ? selectedSheet[cellAddressS].v : '';
+        var cellValueT = selectedSheet[cellAddressT] ? selectedSheet[cellAddressT].v : '';
+        var cellValueU = ''; //La coleccion podría ser un numero y por ende no es aplicable el toUpperCase/toLowerCase
+        if (selectedSheet[cellAddressU] && typeof selectedSheet[cellAddressU].v === 'string') {
+            cellValueU = selectedSheet[cellAddressU].v.charAt(0).toUpperCase() + selectedSheet[cellAddressU].v.slice(1).toLowerCase();
+        }
+        var cellValueV = selectedSheet[cellAddressV] ? selectedSheet[cellAddressV].v : '';
+
+
+        // Verificar cada valor antes de incluirlo en nombreCompleto, si es vacío lo omite/ trim() para eliminar espacios vacíos al final
+
+        var nombreCompleto = '';
+        nombreCompleto += '<p>Anteojos de sol ';
+        if (cellValueB) nombreCompleto += `${cellValueB.trim()} `; 
+        if (cellValueH) nombreCompleto += `${cellValueH.trim()} `;
+        if (cellValueG) nombreCompleto += `${cellValueG.trim()} `;
+        if (cellValueI) nombreCompleto += `color ${cellValueI.trim()} `;
+        if (cellValueR) nombreCompleto += `cal ${cellValueR}. `;
+        nombreCompleto += 'Original, con estuche y garantía oficial. </p>';
+        nombreCompleto += '<p>';
+        if (cellValueU) nombreCompleto += `Colección: ${cellValueU.trim()}. <br>`;
+        if (cellValueJ) nombreCompleto += `Material del armazón: ${cellValueJ.trim()}. <br>`;
+        if (cellValueM) nombreCompleto += `Color de la lente: ${cellValueM.trim()}. <br>`;
+        if (cellValueC) nombreCompleto += `Color del frente: ${cellValueC.trim()}. <br>`;
+        if (cellValueL) nombreCompleto += `Color de patilla: ${cellValueL.trim()}. <br>`;
+        if (cellValueK) nombreCompleto += `Tipo de filtro: ${cellValueK.trim()}. <br>`;
+        if (cellValueV) nombreCompleto += `Pais de origen: ${cellValueV.trim()}. <br>`;
+        nombreCompleto += '</p>';
+        nombreCompleto += '<p>';
+        nombreCompleto += 'Medidas: <br>';
+        if (cellValueR) nombreCompleto += `Diámetro de la lente: ${cellValueR}mm. <br>`;
+        if (cellValueS) nombreCompleto += `Largo de puente: ${cellValueS}mm. <br>`;
+        if (cellValueT) nombreCompleto += `Largo de patilla: ${cellValueT}mm. <br>`;
+        nombreCompleto += '</p>'
+        nombreCompleto += '<p> 1 año de Garantía por defectos de fabricación. NO cubre fallas por mal uso del producto. </p>';
+        nombreCompleto += '<p>Envío gratis a todo el país. <br></p>';
+
+        resultadoDescripcionSol.push(nombreCompleto.trim());
+    }
+    return resultadoDescripcionSol;
+}
