@@ -3,7 +3,7 @@ document.getElementById('generarExcel').addEventListener('click', generarExcel);
 document.getElementById('btn_plantilla').addEventListener('click', descargarModeloPlantilla);
 
 function descargarModeloPlantilla() {
-
+    var reader = new FileReader();
     // Crear un nuevo libro de Excel
     var nuevoLibro = XLSX.utils.book_new();
 
@@ -360,7 +360,7 @@ function mostrarDatos() {
             if (cellValueB) nombreCompleto += `${cellValueB.trim()} `; // trim() para eliminar espacios al final
             if (cellValueH) nombreCompleto += `${cellValueH.trim()} `;
             if (cellValueG) nombreCompleto += `${cellValueG.trim()} `;
-            if (cellValueI) nombreCompleto += `color ${cellValueI.trim()} `;
+            if (cellValueI) nombreCompleto += `color ${cellValueI} `;
             if (cellValueL) nombreCompleto += `cal ${cellValueL} `; //es un num por eso no hace falta cortarlo
             if (cellValueO) nombreCompleto += `- ${cellValueO.trim()}`;
 
@@ -408,7 +408,7 @@ function mostrarDatos() {
             if (cellValueB) nombreCompleto += `${cellValueB.trim()} `; // trim() para eliminar espacios al final
             if (cellValueH) nombreCompleto += `${cellValueH.trim()} `;
             if (cellValueG) nombreCompleto += `${cellValueG.trim()} `;
-            if (cellValueI) nombreCompleto += `Color ${cellValueI.trim()} `;
+            if (cellValueI) nombreCompleto += `Color ${cellValueI} `;
             nombreCompleto += 'Original, con estuche y garantía oficial. </p>';
             nombreCompleto += '<p>';
             if (cellValueO) nombreCompleto += `Colección: ${cellValueO.trim()}. <br>`;
