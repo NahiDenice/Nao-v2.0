@@ -650,7 +650,7 @@ function generarDescripcionSol(range) {
 
         //si hay valor: transforma las palabras en la primer letra en mayus y las otras en min, sino un ''
         var cellValueB = selectedSheet[cellAddressB] ? selectedSheet[cellAddressB].v.charAt(0).toUpperCase() + selectedSheet[cellAddressB].v.slice(1).toLowerCase() : '';
-        var cellValueC = selectedSheet[cellAddressC] ? selectedSheet[cellAddressC].v.charAt(0).toUpperCase() + selectedSheet[cellAddressB].v.slice(1).toLowerCase() : '';
+        var cellValueC = selectedSheet[cellAddressC] ? selectedSheet[cellAddressC].v.charAt(0).toUpperCase() + selectedSheet[cellAddressC].v.slice(1).toLowerCase() : '';
         var cellValueG = selectedSheet[cellAddressG] ? selectedSheet[cellAddressG].v : '';
         var cellValueH = selectedSheet[cellAddressH] ? selectedSheet[cellAddressH].v.charAt(0).toUpperCase() + selectedSheet[cellAddressH].v.slice(1).toLowerCase() : '';
         var cellValueI = selectedSheet[cellAddressI] ? selectedSheet[cellAddressI].v : '';
